@@ -7,9 +7,6 @@ class Api::V1::MerchantsController < ApplicationController
 
   def show
     render json: MerchantSerializer.new(@merchant)
-    if params[:id].nil?
-
-    end
   end
 
   def all_merchants

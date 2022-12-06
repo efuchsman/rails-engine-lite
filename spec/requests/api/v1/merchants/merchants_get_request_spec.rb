@@ -85,4 +85,48 @@ describe "Merchants API [GET] requests" do
       end
     end
   end
+
+  describe "GET /merchants/:merchant_id/items" do
+    describe "when records exist" do
+      before :each do
+        @merchant = create(:merchant)
+        @item1 = Item.create!(name: "name1", description: "desc1", unit_price: 75000, merchant_id: @merchant.id)
+        @item2 = Item.create!(name: "name2", description: "desc2", unit_price: 85000, merchant_id: @merchant.id)
+      end
+
+      it 'returns a successful response' do
+        get "/api/v1/merchants/#{@merchant.id}/items"
+
+        JSON.parse(response.body, symbolize_names: true)
+
+        expect(response).to be_successful
+      end
+
+      it 'returns a status code 200' do
+        get "/api/v1/merchants/#{@merchant.id}/items"
+
+        JSON.parse(response.body, symbolize_names: true)
+
+        expect(response).to have_http_status(200)
+      end
+
+      it "It returns a merchant's items" do
+        get "/api/v1/merchants/#{@merchant.id}/items"
+
+        items = JSON.parse(response.body, symbolize_names: true)
+
+        expect(items.class).to be Hash
+        expect(items).to have_key(:data)
+
+        expect(items[:data][0]).to have_key(:id)
+        expect(items[:data][0]).to have_key(:type)
+        expect(items[:data][0]).to have_key(:attributes)
+
+        expect(items[:data][0][:attributes]).to have_key(:name)
+        expect(items[:data][0][:attributes]).to have_key(:description)
+        expect(items[:data][0][:attributes]).to have_key(:unit_price)
+        expect(items[:data][0][:attributes]).to have_key(:merchant_id)
+      end
+    end
+  end
 end
