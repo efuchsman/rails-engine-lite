@@ -68,6 +68,7 @@ describe "Merchants API [GET] requests" do
         expect(merchant1[:data]).to have_key(:type)
         expect(merchant1[:data]).to have_key(:attributes)
         expect(merchant1[:data][:attributes]).to have_key(:name)
+        expect(merchant1[:data][:attributes][:name].class).to be String
       end
     end
 
@@ -122,10 +123,33 @@ describe "Merchants API [GET] requests" do
         expect(items[:data][0]).to have_key(:type)
         expect(items[:data][0]).to have_key(:attributes)
 
+        expect(items[:data][0][:id].class).to be String
+        expect(items[:data][0][:type].class).to be String
+
+        expect(items[:data][0][:attributes].class).to be Hash
         expect(items[:data][0][:attributes]).to have_key(:name)
         expect(items[:data][0][:attributes]).to have_key(:description)
         expect(items[:data][0][:attributes]).to have_key(:unit_price)
         expect(items[:data][0][:attributes]).to have_key(:merchant_id)
+
+        expect(items[:data][0][:attributes][:name].class).to be String
+        expect(items[:data][0][:attributes][:description].class).to be String
+        expect(items[:data][0][:attributes][:unit_price].class).to be Float
+        expect(items[:data][0][:attributes][:merchant_id].class).to be Integer
+      end
+    end
+
+    describe "When the merchant id DNE" do
+      it 'returns status code 404' do
+        get "/api/v1/merchants/4/items"
+
+        expect(response).to have_http_status(404)
+      end
+
+      it 'returns a not found message' do
+        get "/api/v1/merchants/4/items"
+
+        expect(response.body).to match(/Couldn't find Merchant/)
       end
     end
   end
