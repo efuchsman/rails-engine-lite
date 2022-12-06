@@ -208,7 +208,7 @@
         "lines": [
           1,
           1,
-          4,
+          25,
           null,
           null
         ]
@@ -226,10 +226,17 @@
           null
         ]
       },
-      "/Users/elifuchsman/Turing/mod3_directory/projects/rails-engine/app/models/merchant.rb": {
+      "/Users/elifuchsman/Turing/mod3_directory/projects/rails-engine/app/models/item.rb": {
         "lines": [
           1,
+          1,
           null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
           null
         ]
       },
@@ -240,28 +247,144 @@
           null
         ]
       },
+      "/Users/elifuchsman/Turing/mod3_directory/projects/rails-engine/spec/models/merchant_spec.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          1,
+          2,
+          null,
+          null,
+          1,
+          2,
+          null,
+          null
+        ]
+      },
+      "/Users/elifuchsman/Turing/mod3_directory/projects/rails-engine/app/models/merchant.rb": {
+        "lines": [
+          1,
+          1,
+          null,
+          1,
+          null
+        ]
+      },
+      "/Users/elifuchsman/Turing/mod3_directory/projects/rails-engine/spec/requests/api/v1/merchants/merchants_get_request_spec.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          1,
+          1,
+          1,
+          3,
+          null,
+          null,
+          1,
+          null,
+          1,
+          1,
+          null,
+          1,
+          null,
+          null,
+          1,
+          1,
+          1,
+          null,
+          1,
+          null,
+          null,
+          1,
+          1,
+          1,
+          null,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null,
+          null,
+          null,
+          1,
+          1,
+          5,
+          5,
+          null,
+          null,
+          1,
+          1,
+          1,
+          null,
+          1,
+          null,
+          1,
+          null,
+          null,
+          1,
+          1,
+          null,
+          1,
+          null,
+          1,
+          null,
+          null,
+          1,
+          1,
+          1,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null,
+          null,
+          1,
+          1,
+          1,
+          null,
+          1,
+          null,
+          null,
+          1,
+          1,
+          null,
+          1,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
       "/Users/elifuchsman/Turing/mod3_directory/projects/rails-engine/app/controllers/api/v1/merchants_controller.rb": {
         "lines": [
           1,
           1,
           1,
           1,
-          0,
+          3,
           null,
           null,
           1,
-          0,
-          0,
+          3,
+          3,
           null,
           null,
           null,
           null,
           1,
-          0,
+          3,
           null,
           null,
           1,
-          1,
+          5,
           null,
           null
         ]
@@ -278,7 +401,7 @@
         "lines": [
           1,
           1,
-          1,
+          2,
           null,
           null
         ]
@@ -290,7 +413,7 @@
           null,
           1,
           1,
-          1,
+          2,
           null,
           null,
           1,
@@ -299,8 +422,17 @@
           null,
           null
         ]
+      },
+      "/Users/elifuchsman/Turing/mod3_directory/projects/rails-engine/app/serializers/merchant_serializer.rb": {
+        "lines": [
+          1,
+          1,
+          null,
+          1,
+          null
+        ]
       }
     },
-    "timestamp": 1670288515
+    "timestamp": 1670290694
   }
 }
