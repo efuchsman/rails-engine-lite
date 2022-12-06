@@ -208,7 +208,7 @@
         "lines": [
           1,
           1,
-          2,
+          1,
           null,
           null
         ]
@@ -226,36 +226,6 @@
           1,
           null,
           null,
-          null
-        ]
-      },
-      "/Users/elifuchsman/Turing/mod3_directory/projects/rails-engine/app/models/merchant.rb": {
-        "lines": [
-          1,
-          1,
-          null,
-          1,
-          null
-        ]
-      },
-      "/Users/elifuchsman/Turing/mod3_directory/projects/rails-engine/app/models/application_record.rb": {
-        "lines": [
-          1,
-          1,
-          null
-        ]
-      },
-      "/Users/elifuchsman/Turing/mod3_directory/projects/rails-engine/app/models/item.rb": {
-        "lines": [
-          1,
-          1,
-          null,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
           null
         ]
       },
@@ -299,7 +269,7 @@
         "lines": [
           1,
           1,
-          0,
+          1,
           null,
           null
         ]
@@ -311,7 +281,7 @@
           null,
           1,
           1,
-          0,
+          1,
           null,
           null,
           1,
@@ -329,8 +299,29 @@
           1,
           null
         ]
+      },
+      "/Users/elifuchsman/Turing/mod3_directory/projects/rails-engine/app/models/item.rb": {
+        "lines": [
+          1,
+          1,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null
+        ]
+      },
+      "/Users/elifuchsman/Turing/mod3_directory/projects/rails-engine/app/models/application_record.rb": {
+        "lines": [
+          1,
+          1,
+          null
+        ]
       }
     },
-    "timestamp": 1670356571
+    "timestamp": 1670356810
   }
 }

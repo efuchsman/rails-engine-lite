@@ -105,5 +105,19 @@ describe "Items API [GET]" do
         expect(item[:data][:attributes][:merchant_id].class).to be Integer
       end
     end
+
+    describe 'When the record DNE' do
+      it 'returns status code 404' do
+        get "/api/v1/items/4"
+
+        expect(response).to have_http_status(404)
+      end
+
+      it 'returns a not found message' do
+        get "/api/v1/items/4"
+
+        expect(response.body).to match(/Couldn't find Item/)
+      end
+    end
   end
 end
