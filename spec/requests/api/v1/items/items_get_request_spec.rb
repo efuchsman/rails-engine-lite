@@ -52,4 +52,58 @@ describe "Items API [GET]" do
       end
     end
   end
+
+  describe 'GET /items/:id' do
+    describe "When the records exist" do
+      before :each do
+        @merchant = create(:merchant)
+        @item1 = Item.create!(name: "name1", description: "desc1", unit_price: 75000, merchant_id: @merchant.id)
+        @item2 = Item.create!(name: "name2", description: "desc2", unit_price: 85000, merchant_id: @merchant.id)
+      end
+
+      it "returns a successful response" do
+        get "/api/v1/items/#{@item1.id}"
+
+        JSON.parse(response.body, symbolize_names: true)
+
+        expect(response).to be_successful
+      end
+
+      it 'returns a status code 200' do
+        get "/api/v1/items/#{@item1.id}/"
+
+        JSON.parse(response.body, symbolize_names: true)
+
+        expect(response).to have_http_status(200)
+      end
+
+      it "returns an item" do
+        get "/api/v1/items/#{@item1.id}/"
+
+        item = JSON.parse(response.body, symbolize_names: true)
+
+        expect(item.class).to be Hash
+        expect(item).to have_key(:data)
+        expect(item[:data].class).to be Hash
+
+        expect(item[:data]).to have_key(:id)
+        expect(item[:data]).to have_key(:type)
+        expect(item[:data]).to have_key(:attributes)
+
+        expect(item[:data][:id].class).to be String
+        expect(item[:data][:type].class).to be String
+        expect(item[:data][:attributes].class).to be Hash
+
+        expect(item[:data][:attributes]).to have_key(:name)
+        expect(item[:data][:attributes]).to have_key(:description)
+        expect(item[:data][:attributes]).to have_key(:unit_price)
+        expect(item[:data][:attributes]).to have_key(:merchant_id)
+
+        expect(item[:data][:attributes][:name].class).to be String
+        expect(item[:data][:attributes][:description].class).to be String
+        expect(item[:data][:attributes][:unit_price].class).to be Float
+        expect(item[:data][:attributes][:merchant_id].class).to be Integer
+      end
+    end
+  end
 end
