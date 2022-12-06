@@ -208,7 +208,7 @@
         "lines": [
           1,
           1,
-          1,
+          2,
           null,
           null
         ]
@@ -229,73 +229,18 @@
           null
         ]
       },
-      "/Users/elifuchsman/Turing/mod3_directory/projects/rails-engine/app/controllers/api/v1/items_controller.rb": {
-        "lines": [
-          1,
-          null,
-          1,
-          0,
-          0,
-          0,
-          null,
-          0,
-          null,
-          0,
-          null,
-          null,
-          null,
-          1,
-          1,
-          0,
-          0,
-          null,
-          0,
-          null,
-          1,
-          null,
-          null,
-          null
-        ]
-      },
-      "/Users/elifuchsman/Turing/mod3_directory/projects/rails-engine/app/controllers/application_controller.rb": {
+      "/Users/elifuchsman/Turing/mod3_directory/projects/rails-engine/app/models/merchant.rb": {
         "lines": [
           1,
           1,
+          null,
           1,
           null
         ]
       },
-      "/Users/elifuchsman/Turing/mod3_directory/projects/rails-engine/app/controllers/concerns/response.rb": {
+      "/Users/elifuchsman/Turing/mod3_directory/projects/rails-engine/app/models/application_record.rb": {
         "lines": [
           1,
-          1,
-          1,
-          null,
-          null
-        ]
-      },
-      "/Users/elifuchsman/Turing/mod3_directory/projects/rails-engine/app/controllers/concerns/exception_handler.rb": {
-        "lines": [
-          1,
-          1,
-          null,
-          1,
-          1,
-          1,
-          null,
-          null,
-          1,
-          0,
-          null,
-          null,
-          null
-        ]
-      },
-      "/Users/elifuchsman/Turing/mod3_directory/projects/rails-engine/app/serializers/item_serializer.rb": {
-        "lines": [
-          1,
-          1,
-          null,
           1,
           null
         ]
@@ -314,14 +259,90 @@
           null
         ]
       },
-      "/Users/elifuchsman/Turing/mod3_directory/projects/rails-engine/app/models/application_record.rb": {
+      "/Users/elifuchsman/Turing/mod3_directory/projects/rails-engine/app/controllers/api/v1/items_controller.rb": {
         "lines": [
+          1,
+          null,
+          1,
+          0,
+          0,
+          0,
+          null,
+          0,
+          null,
+          0,
+          null,
+          null,
+          null,
+          1,
+          0,
+          0,
+          0,
+          null,
+          0,
+          null,
+          0,
+          null,
+          null,
+          null,
+          1,
+          1,
+          null,
+          1,
+          0,
+          null,
+          null,
+          1,
+          null,
+          3,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          null,
+          1,
+          1,
+          null,
+          null
+        ]
+      },
+      "/Users/elifuchsman/Turing/mod3_directory/projects/rails-engine/app/controllers/application_controller.rb": {
+        "lines": [
+          1,
           1,
           1,
           null
         ]
+      },
+      "/Users/elifuchsman/Turing/mod3_directory/projects/rails-engine/app/controllers/concerns/response.rb": {
+        "lines": [
+          1,
+          1,
+          0,
+          null,
+          null
+        ]
+      },
+      "/Users/elifuchsman/Turing/mod3_directory/projects/rails-engine/app/controllers/concerns/exception_handler.rb": {
+        "lines": [
+          1,
+          1,
+          null,
+          1,
+          1,
+          0,
+          null,
+          null,
+          1,
+          0,
+          null,
+          null,
+          null
+        ]
       }
     },
-    "timestamp": 1670356810
+    "timestamp": 1670365803
   }
 }
