@@ -286,18 +286,22 @@
           null,
           null,
           1,
-          1,
+          0,
           null,
-          1,
+          0,
           0,
           null,
           null,
+          0,
+          null,
+          0,
+          null,
+          null,
+          null,
+          null,
+          null,
           1,
-          null,
-          3,
-          null,
-          null,
-          null,
+          1,
           null,
           null,
           1,
@@ -341,8 +345,17 @@
           null,
           null
         ]
+      },
+      "/Users/elifuchsman/Turing/mod3_directory/projects/rails-engine/app/serializers/item_serializer.rb": {
+        "lines": [
+          1,
+          1,
+          null,
+          1,
+          null
+        ]
       }
     },
-    "timestamp": 1670365803
+    "timestamp": 1670374941
   }
 }

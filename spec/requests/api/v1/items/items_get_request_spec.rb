@@ -70,7 +70,7 @@ describe "Items API [GET]" do
       end
 
       it 'returns a status code 200' do
-        get "/api/v1/items/#{@item1.id}/"
+        get "/api/v1/items/#{@item1.id}"
 
         JSON.parse(response.body, symbolize_names: true)
 
@@ -78,7 +78,7 @@ describe "Items API [GET]" do
       end
 
       it "returns an item" do
-        get "/api/v1/items/#{@item1.id}/"
+        get "/api/v1/items/#{@item1.id}"
 
         item = JSON.parse(response.body, symbolize_names: true)
 
