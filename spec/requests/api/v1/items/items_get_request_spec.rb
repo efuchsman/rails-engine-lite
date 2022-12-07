@@ -1,16 +1,17 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-describe "Items API [GET]" do
-  describe "GET /items" do
-    describe "When the records exist" do
+describe 'Items API [GET]' do
+  describe 'GET /items' do
+    describe 'When the records exist' do
       before :each do
         @merchant = create(:merchant)
-        @item1 = Item.create!(name: "name1", description: "desc1", unit_price: 75000, merchant_id: @merchant.id)
-        @item2 = Item.create!(name: "name2", description: "desc2", unit_price: 85000, merchant_id: @merchant.id)
+        @item1 = Item.create!(name: 'name1', description: 'desc1', unit_price: 75_000, merchant_id: @merchant.id)
+        @item2 = Item.create!(name: 'name2', description: 'desc2', unit_price: 85_000, merchant_id: @merchant.id)
       end
 
-
-      it "returns a successful response" do
+      it 'returns a successful response' do
         get '/api/v1/items'
 
         items = JSON.parse(response.body, symbolize_names: true)
@@ -54,14 +55,14 @@ describe "Items API [GET]" do
   end
 
   describe 'GET /items/:id' do
-    describe "When the records exist" do
+    describe 'When the records exist' do
       before :each do
         @merchant = create(:merchant)
-        @item1 = Item.create!(name: "name1", description: "desc1", unit_price: 75000, merchant_id: @merchant.id)
-        @item2 = Item.create!(name: "name2", description: "desc2", unit_price: 85000, merchant_id: @merchant.id)
+        @item1 = Item.create!(name: 'name1', description: 'desc1', unit_price: 75_000, merchant_id: @merchant.id)
+        @item2 = Item.create!(name: 'name2', description: 'desc2', unit_price: 85_000, merchant_id: @merchant.id)
       end
 
-      it "returns a successful response" do
+      it 'returns a successful response' do
         get "/api/v1/items/#{@item1.id}"
 
         JSON.parse(response.body, symbolize_names: true)
@@ -77,7 +78,7 @@ describe "Items API [GET]" do
         expect(response).to have_http_status(200)
       end
 
-      it "returns an item" do
+      it 'returns an item' do
         get "/api/v1/items/#{@item1.id}"
 
         item = JSON.parse(response.body, symbolize_names: true)
@@ -108,16 +109,55 @@ describe "Items API [GET]" do
 
     describe 'When the record DNE' do
       it 'returns status code 404' do
-        get "/api/v1/items/4"
+        get '/api/v1/items/4'
 
         expect(response).to have_http_status(404)
       end
 
       it 'returns a not found message' do
-        get "/api/v1/items/4"
+        get '/api/v1/items/4'
 
         expect(response.body).to match(/Couldn't find Item/)
       end
+    end
+  end
+
+  describe 'GET /items/:item_id/merchant' do
+    describe 'When the records exist' do
+      before :each do
+        @merchant = create(:merchant)
+        @item = Item.create!(name: 'name1', description: 'desc1', unit_price: 75_000, merchant_id: @merchant.id)
+      end
+
+      it 'returns a successful response' do
+        get "/api/v1/items/#{@item.id}/merchant"
+
+        JSON.parse(response.body, symbolize_names: true)
+
+        expect(response).to be_successful
+      end
+
+      it 'returns a status code 200' do
+        get "/api/v1/items/#{@item.id}/merchant"
+
+        JSON.parse(response.body, symbolize_names: true)
+
+        expect(response).to have_http_status(200)
+      end
+    end
+  end
+
+  describe 'When the record DNE' do
+    it 'returns status code 404' do
+      get '/api/v1/items/4/merchant'
+
+      expect(response).to have_http_status(404)
+    end
+
+    it 'returns a not found message' do
+      get '/api/v1/items/4'
+
+      expect(response.body).to match(/Couldn't find Item/)
     end
   end
 end
