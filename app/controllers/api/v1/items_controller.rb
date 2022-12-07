@@ -41,6 +41,12 @@ class Api::V1::ItemsController < ApplicationController
     render json: ItemSerializer.new(Item.update(params[:id], item_params)), status: 202
   end
 
+  def destroy
+    item = Item.find(params[:id])
+    item.invoices.map(&:destroy_invoice)
+    render json: item.destroy
+  end
+
   private
 
   def item_params
