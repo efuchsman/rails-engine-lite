@@ -51,7 +51,7 @@ module Api
 
       def destroy
         item = Item.find(params[:id])
-        item.invoices.map(&:destroy_invoice)
+        item.invoices.delete_invoices
         render json: item.destroy
       end
 

@@ -27,9 +27,8 @@ RSpec.describe Invoice, type: :model do
 
     describe '#delete_invoices' do
       it 'Destroys an Invoice if that Invoices only item gets deleted' do
-        # binding.pry
-        @invoices.each(&:delete_invoice)
 
+        Invoice.delete_invoices
         expect(Invoice.all).to eq([@invoice1, @invoice2])
       end
     end
