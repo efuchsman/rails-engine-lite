@@ -35,19 +35,6 @@ module Api
           end
         end
 
-        # def show
-        #   if params[:min_price].present?
-        #     item = Item.min_price(params[:min_price])
-        #     if item.nil?
-        #     render json: { data: {  } }
-        #     else
-        #       render json: ItemSerializer.new(item)
-        #     end
-        #   else
-        #     render json: ItemSerializer.new(item)
-        #   end
-        # end
-
         private
 
         def name_search?
