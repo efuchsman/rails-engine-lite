@@ -16,11 +16,27 @@ class Item < ApplicationRecord
     where('name ILIKE ?', "%#{name_search}%")
   end
 
+  def self.find_an_item_by_name(name_search)
+    where('name ILIKE ?', "%#{name_search}%").first
+  end
+
   def self.min_price(num)
     where("unit_price >= #{num}")
   end
 
   def self.max_price(num)
     where("unit_price <= #{num}")
+  end
+
+  def self.min_price_one(num)
+    where("unit_price >= #{num}")
+    .order(:name)
+    .first
+  end
+
+  def self.max_price_one(num)
+    where("unit_price <= #{num}")
+    .order(:name)
+    .first
   end
 end

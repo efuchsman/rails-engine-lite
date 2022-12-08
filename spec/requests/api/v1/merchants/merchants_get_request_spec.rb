@@ -277,10 +277,10 @@ describe 'Merchants API [GET] requests' do
     end
 
     describe "When there are no partial matches" do
-      it "Returns status 200" do
+      it "Returns status 400" do
         get '/api/v1/merchants/find_all?name=n5me'
 
-        expect(response).to have_http_status(200)
+        expect(response).to have_http_status(400)
       end
 
       it 'returns blank data' do

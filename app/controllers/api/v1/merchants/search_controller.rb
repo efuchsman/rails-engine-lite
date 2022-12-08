@@ -8,8 +8,8 @@ module Api
         def index
           if params[:name].present?
             merchants = Merchant.find_all_merchants_by_name(params[:name])
-            if merchants.nil?
-              render json: { data: {} }, status: 400
+            if merchants.nil? || merchants.blank?
+              render json: { data: [] }, status: 400
             else
               render json: MerchantSerializer.new(merchants)
             end

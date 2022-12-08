@@ -212,7 +212,7 @@ describe 'Items API [GET]' do
 
         expect(items.class).to be Hash
         expect(items).to have_key(:data)
-        expect(items[:data]).to eq({})
+        expect(items[:data]).to eq([])
       end
 
       it 'returns status 404' do
@@ -235,12 +235,12 @@ describe 'Items API [GET]' do
         expect(items[:data]).to eq('Invalid Search')
       end
 
-      it 'returns status 404' do
-        get '/api/v1/items/find_all?name=nam5'
+      it 'returns status 400' do
+        get '/api/v1/items/find_all?name='
 
         items = JSON.parse(response.body, symbolize_names: true)
 
-        expect(response).to have_http_status(404)
+        expect(response).to have_http_status(400)
       end
     end
   end
@@ -370,6 +370,177 @@ describe 'Items API [GET]' do
     describe 'When the param is blank' do
       it 'return invalid search' do
         get '/api/v1/items/find_all?max_price='
+
+        items = JSON.parse(response.body, symbolize_names: true)
+
+        expect(items.class).to be Hash
+        expect(items).to have_key(:data)
+        expect(items[:data]).to eq('Invalid Search')
+      end
+    end
+  end
+
+  describe 'GET /items/find?name=' do
+    before :each do
+      @merchant = create(:merchant)
+      @item1 = Item.create!(name: 'name1', description: 'desc1', unit_price: 99.99, merchant_id: @merchant.id)
+      @item2 = Item.create!(name: 'name2', description: 'desc1', unit_price: 37.99, merchant_id: @merchant.id)
+      @item3 = Item.create!(name: 'name3', description: 'desc1', unit_price: 84.99, merchant_id: @merchant.id)
+      @item4 = Item.create!(name: 'name4', description: 'desc1', unit_price: 79.99, merchant_id: @merchant.id)
+    end
+
+    describe "When the record exists" do
+      it 'returns a status code 200' do
+        get '/api/v1/items/find?name=name'
+
+        expect(response).to be_successful
+        expect(response).to have_http_status(200)
+      end
+
+      it 'has readable attributes' do
+        get '/api/v1/items/find?name=name'
+
+        item = JSON.parse(response.body, symbolize_names: true)
+
+        expect(item.class).to be Hash
+        expect(item).to have_key(:data)
+        expect(item[:data]).to have_key(:id)
+        expect(item[:data]).to have_key(:type)
+        expect(item[:data]).to have_key(:attributes)
+        expect(item[:data].class).to be Hash
+      end
+    end
+
+    describe 'When a name is provided but does not partially match anything in the DB' do
+      it 'returns data as a an empty hash' do
+        get '/api/v1/items/find?name=nam5'
+
+        items = JSON.parse(response.body, symbolize_names: true)
+
+        expect(items.class).to be Hash
+        expect(items).to have_key(:data)
+        expect(items[:data]).to eq({})
+      end
+
+      it 'returns status 404' do
+        get '/api/v1/items/find?name=nam5'
+
+        items = JSON.parse(response.body, symbolize_names: true)
+
+        expect(response).to have_http_status(404)
+      end
+    end
+  end
+
+  describe ' GET /items/find?min_price= ' do
+    before :each do
+      @merchant = create(:merchant)
+      @item1 = Item.create!(name: 'nem1', description: 'desc1', unit_price: 99.99, merchant_id: @merchant.id)
+      @item2 = Item.create!(name: 'name2', description: 'desc1', unit_price: 37.99, merchant_id: @merchant.id)
+      @item3 = Item.create!(name: 'nae3', description: 'desc1', unit_price: 84.99, merchant_id: @merchant.id)
+      @item4 = Item.create!(name: 'name4', description: 'desc1', unit_price: 79.99, merchant_id: @merchant.id)
+    end
+
+    describe 'When the record exists' do
+      describe 'and greater than 0' do
+        it 'it returns a code 200' do
+          get '/api/v1/items/find?min_price=50'
+
+          expect(response).to be_successful
+          expect(response).to have_http_status(200)
+        end
+
+        it 'has readable attributes' do
+          get '/api/v1/items/find?min_price=50'
+
+          item = JSON.parse(response.body, symbolize_names: true)
+
+          expect(item.class).to be Hash
+          expect(item).to have_key(:data)
+          expect(item[:data]).to have_key(:id)
+          expect(item[:data]).to have_key(:type)
+          expect(item[:data]).to have_key(:attributes)
+          expect(item[:data].class).to be Hash
+        end
+      end
+
+      describe 'when less than 0' do
+        it 'it returns a code 400' do
+          get '/api/v1/items/find?min_price=-50'
+
+          expect(response).to have_http_status(400)
+        end
+      end
+    end
+
+    describe 'When the param is blank' do
+      it 'return invalid search' do
+        get '/api/v1/items/find?min_price='
+
+        items = JSON.parse(response.body, symbolize_names: true)
+
+        expect(items.class).to be Hash
+        expect(items).to have_key(:data)
+        expect(items[:data]).to eq('Invalid Search')
+      end
+    end
+  end
+
+  describe ' GET /items/find?max_price= ' do
+    before :each do
+      @merchant = create(:merchant)
+      @item1 = Item.create!(name: 'name1', description: 'desc1', unit_price: 99.99, merchant_id: @merchant.id)
+      @item2 = Item.create!(name: 'name2', description: 'desc1', unit_price: 37.99, merchant_id: @merchant.id)
+      @item3 = Item.create!(name: 'name3', description: 'desc1', unit_price: 84.99, merchant_id: @merchant.id)
+      @item4 = Item.create!(name: 'name4', description: 'desc1', unit_price: 79.99, merchant_id: @merchant.id)
+    end
+
+    describe 'When the record exists' do
+      describe 'and greater than 0' do
+        it 'it returns a code 200' do
+          get '/api/v1/items/find?max_price=50'
+
+          expect(response).to have_http_status(200)
+        end
+
+        it 'has readable attributes' do
+          get '/api/v1/items/find?max_price=50'
+
+          item = JSON.parse(response.body, symbolize_names: true)
+          # binding.pry
+          expect(item.class).to be Hash
+          expect(item).to have_key(:data)
+          expect(item[:data]).to have_key(:id)
+          expect(item[:data]).to have_key(:type)
+          expect(item[:data]).to have_key(:attributes)
+          expect(item[:data].class).to be Hash
+        end
+      end
+
+      describe 'when less than 0' do
+        it 'it returns a code 400' do
+          get '/api/v1/items/find?max_price=-50'
+
+          expect(response).to have_http_status(400)
+        end
+      end
+    end
+
+    describe 'When the record DNE' do
+      it 'returns a blank data array' do
+        get '/api/v1/items/find?max_price=1'
+
+        items = JSON.parse(response.body, symbolize_names: true)
+
+        expect(items.class).to be Hash
+        expect(items).to have_key(:data)
+        expect(items[:data]).to eq({})
+      end
+    end
+
+    describe 'When the param is blank' do
+      it 'return invalid search' do
+        get '/api/v1/items/find?max_price='
 
         items = JSON.parse(response.body, symbolize_names: true)
 
