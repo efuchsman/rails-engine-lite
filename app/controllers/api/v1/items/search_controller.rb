@@ -5,41 +5,33 @@ module Api
     module Items
       class SearchController < ApplicationController
         def index
-          if self.name_search?
+          if name_search?
             items = Item.find_items_by_name(params[:name])
-            # binding.pry
             if items.nil? || items.empty?
-              render json: { data: {} }, :status => 404
-
+              render_blank_data
             else
-              render json: ItemSerializer.new(items)
+              render_json(items)
             end
-
-          elsif self.positive_min_price_search?
-            # binding.pry
+          elsif positive_min_price_search?
             items = Item.min_price(params[:min_price])
             if items.nil?
-              render json: { data: {} }, status: 400
+              render_blank_data
             else
-              render json: ItemSerializer.new(items)
+              render_json(items)
             end
-
-          elsif self.negative_min_price_search?
+          elsif negative_min_price_search?
             render json: { errors: {} }, status: 400
-
-          elsif self.positive_max_price_search?
+          elsif positive_max_price_search?
             items = Item.max_price(params[:max_price])
             if items.nil?
-              render json: { data: {} }, status: 400
+              render_blank_data
             else
-              render json: ItemSerializer.new(items)
+              render_json(items)
             end
-
-          elsif self.negative_max_price_search?
-            render json: { errors: {} }, status: 400
-
+          elsif negative_max_price_search?
+            render_blank_error
           else
-            render json: { data: 'Invalid Search' }, status: 400
+            render_invalid
           end
         end
 
@@ -76,6 +68,22 @@ module Api
 
         def negative_max_price_search?
           !params[:min_price].present? && !params[:name].present? && params[:max_price].present? && params[:max_price].to_f.negative?
+        end
+
+        def render_json(items)
+          render json: ItemSerializer.new(items)
+        end
+
+        def render_invalid
+          render json: { data: 'Invalid Search' }, status: 400
+        end
+
+        def render_blank_data
+          render json: { data: {} }, status: 404
+        end
+
+        def render_blank_error
+          render json: { errors: {} }, status: 400
         end
       end
     end

@@ -255,7 +255,7 @@ describe 'Items API [GET]' do
     end
 
     describe 'When the record exists' do
-      describe "and greater than 0" do
+      describe 'and greater than 0' do
         it 'it returns a code 200' do
           get '/api/v1/items/find_all?min_price=50'
 
@@ -279,7 +279,7 @@ describe 'Items API [GET]' do
         end
       end
 
-      describe "when less than 0" do
+      describe 'when less than 0' do
         it 'it returns a code 400' do
           get '/api/v1/items/find_all?min_price=-50'
 
@@ -288,7 +288,7 @@ describe 'Items API [GET]' do
       end
     end
 
-    describe "When the record DNE" do
+    describe 'When the record DNE' do
       it 'returns a blank data array' do
         get '/api/v1/items/find_all?min_price=50000'
 
@@ -300,7 +300,7 @@ describe 'Items API [GET]' do
       end
     end
 
-    describe "When the param is blank" do
+    describe 'When the param is blank' do
       it 'return invalid search' do
         get '/api/v1/items/find_all?min_price='
 
@@ -323,7 +323,7 @@ describe 'Items API [GET]' do
     end
 
     describe 'When the record exists' do
-      describe "and greater than 0" do
+      describe 'and greater than 0' do
         it 'it returns a code 200' do
           get '/api/v1/items/find_all?max_price=50'
 
@@ -346,7 +346,7 @@ describe 'Items API [GET]' do
         end
       end
 
-      describe "when less than 0" do
+      describe 'when less than 0' do
         it 'it returns a code 400' do
           get '/api/v1/items/find_all?max_price=-50'
 
@@ -355,7 +355,7 @@ describe 'Items API [GET]' do
       end
     end
 
-    describe "When the record DNE" do
+    describe 'When the record DNE' do
       it 'returns a blank data array' do
         get '/api/v1/items/find_all?max_price=1'
 
@@ -367,7 +367,7 @@ describe 'Items API [GET]' do
       end
     end
 
-    describe "When the param is blank" do
+    describe 'When the param is blank' do
       it 'return invalid search' do
         get '/api/v1/items/find_all?max_price='
 
