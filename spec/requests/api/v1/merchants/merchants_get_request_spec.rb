@@ -154,4 +154,70 @@ describe 'Merchants API [GET] requests' do
       end
     end
   end
+
+  describe 'GET /merchants/find?name=' do
+    before :each do
+      @merchant1 = Merchant.create!(name: "Guard and Grace")
+      @merchant2 = Merchant.create!(name: "Buckhorn Exchange")
+      @merchant3 = Merchant.create!(name: "Sushi Den")
+      @merchant4 = Merchant.create!(name: "Gaetano's")
+      @merchant5 = Merchant.create!(name: "Greenwich")
+    end
+
+    describe 'when records exist' do
+      it 'returns a status code 200' do
+        get "/api/v1/merchants/find?name=buck"
+
+        JSON.parse(response.body, symbolize_names: true)
+        # binding.pry
+        expect(response).to be_successful
+        expect(response).to have_http_status(200)
+      end
+
+      it "has readable attributes" do
+        get "/api/v1/merchants/find?name=buck"
+
+        merchant = JSON.parse(response.body, symbolize_names: true)
+
+        expect(merchant.class).to be Hash
+        expect(merchant).to have_key(:data)
+
+        expect(merchant[:data].class).to be Hash
+        expect(merchant[:data]).to have_key(:id)
+        expect(merchant[:data]).to have_key(:type)
+        expect(merchant[:data]).to have_key(:attributes)
+
+        expect(merchant[:data][:id].class).to be String
+        expect(merchant[:data][:type].class).to be String
+        expect(merchant[:data][:attributes].class).to be Hash
+
+        expect(merchant[:data][:attributes]).to have_key(:name)
+        expect(merchant[:data][:attributes][:name].class).to be String
+      end
+    end
+
+    describe "When a name is provided but does not partially match anything in the DB" do
+      it "returns data as a an empty hash" do
+        get "/api/v1/merchants/find?name=b45"
+
+        merchant = JSON.parse(response.body, symbolize_names: true)
+
+        expect(merchant.class).to be Hash
+        expect(merchant).to have_key(:data)
+        expect(merchant[:data]).to eq({})
+      end
+    end
+
+    describe "When no name is provided" do
+      it "returns an invalid search" do
+        get "/api/v1/merchants/find?name="
+
+        merchant = JSON.parse(response.body, symbolize_names: true)
+
+        expect(merchant.class).to be Hash
+        expect(merchant).to have_key(:data)
+        expect(merchant[:data]).to eq("Invalid Search")
+      end
+    end
+  end
 end
