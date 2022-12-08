@@ -14,7 +14,7 @@
       <img src="./assets/0.12.3/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" class="hide">
-      <div class="timestamp">Generated <abbr class="timeago" title="2022-12-08T09:29:06-07:00">2022-12-08T09:29:06-07:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2022-12-08T09:49:46-07:00">2022-12-08T09:49:46-07:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -23,14 +23,14 @@
     <span class="group_name">All Files</span>
     (<span class="covered_percent">
       <span class="green">
-  99.2%
+  99.21%
 </span>
 
      </span>
      covered at
      <span class="covered_strength">
        <span class="green">
-         1.71
+         1.72
        </span>
     </span> hits/line
     )
@@ -43,11 +43,11 @@
   </div>
 
   <div class="t-line-summary">
-    <b>752</b> relevant lines,
-    <span class="green"><b>746</b> lines covered</span> and
+    <b>758</b> relevant lines,
+    <span class="green"><b>752</b> lines covered</span> and
     <span class="red"><b>6</b> lines missed. </span>
     (<span class="green">
-  99.2%
+  99.21%
 </span>
 )
   </div>
@@ -72,12 +72,12 @@
         
           <tr class="t-file">
             <td class="strong t-file__name"><a href="#81e1a414ceb7bd9d4351e31950d8a5b23a5dda24" class="src_link" title="app/controllers/api/v1/items/search_controller.rb">app/controllers/api/v1/items/search_controller.rb</a></td>
-            <td class="green strong cell--number t-file__coverage">95.45 %</td>
-            <td class="cell--number">91</td>
-            <td class="cell--number">44</td>
-            <td class="cell--number">42</td>
+            <td class="green strong cell--number t-file__coverage">96.00 %</td>
+            <td class="cell--number">103</td>
+            <td class="cell--number">50</td>
+            <td class="cell--number">48</td>
             <td class="cell--number">2</td>
-            <td class="cell--number">3.64</td>
+            <td class="cell--number">3.50</td>
             
           </tr>
         
@@ -477,7 +477,7 @@
     <h3>app/controllers/api/v1/items/search_controller.rb</h3>
     <h4>
       <span class="green">
-  95.45%
+  96.0%
 </span>
 
       lines covered
@@ -486,8 +486,8 @@
     
 
     <div class="t-line-summary">
-      <b>44</b> relevant lines.
-      <span class="green"><b>42</b> lines covered</span> and
+      <b>50</b> relevant lines.
+      <span class="green"><b>48</b> lines covered</span> and
       <span class="red"><b>2</b> lines missed.</span>
     </div>
 
@@ -582,7 +582,7 @@
 
             
 
-            <code class="ruby">          if self.name_search?</code>
+            <code class="ruby">          if name_search?</code>
           </li>
         </div>
       
@@ -593,7 +593,7 @@
 
             
 
-            <code class="ruby">            items = Item.find_items_by_name(params[:name])</code>
+            <code class="ruby">            find_items_params_name</code>
           </li>
         </div>
       
@@ -604,7 +604,7 @@
 
             
 
-            <code class="ruby">            if items.nil? || items.empty?</code>
+            <code class="ruby">            if @items_name.nil? || @items_name.empty?</code>
           </li>
         </div>
       
@@ -637,7 +637,7 @@
 
             
 
-            <code class="ruby">              render_json(items)</code>
+            <code class="ruby">              render_json(@items_name)</code>
           </li>
         </div>
       
@@ -659,7 +659,7 @@
 
             
 
-            <code class="ruby">          elsif self.positive_min_price_search?</code>
+            <code class="ruby">          elsif positive_min_price_search?</code>
           </li>
         </div>
       
@@ -670,7 +670,7 @@
 
             
 
-            <code class="ruby">            items = Item.min_price(params[:min_price])</code>
+            <code class="ruby">            find_items_params_min_price</code>
           </li>
         </div>
       
@@ -681,7 +681,7 @@
 
             
 
-            <code class="ruby">            if items.nil?</code>
+            <code class="ruby">            if @items_min_price.nil?</code>
           </li>
         </div>
       
@@ -714,7 +714,7 @@
 
             
 
-            <code class="ruby">              render_json(items)</code>
+            <code class="ruby">              render_json(@items_min_price)</code>
           </li>
         </div>
       
@@ -736,7 +736,7 @@
 
             
 
-            <code class="ruby">          elsif self.negative_min_price_search?</code>
+            <code class="ruby">          elsif negative_min_price_search?</code>
           </li>
         </div>
       
@@ -747,7 +747,7 @@
 
             
 
-            <code class="ruby">            render json: { errors: {} }, status: 400</code>
+            <code class="ruby">            render_blank_error</code>
           </li>
         </div>
       
@@ -758,7 +758,7 @@
 
             
 
-            <code class="ruby">          elsif self.positive_max_price_search?</code>
+            <code class="ruby">          elsif positive_max_price_search?</code>
           </li>
         </div>
       
@@ -769,7 +769,7 @@
 
             
 
-            <code class="ruby">            items = Item.max_price(params[:max_price])</code>
+            <code class="ruby">            find_items_params_max_price</code>
           </li>
         </div>
       
@@ -780,7 +780,7 @@
 
             
 
-            <code class="ruby">            if items.nil?</code>
+            <code class="ruby">            if @items_max_price.nil?</code>
           </li>
         </div>
       
@@ -813,7 +813,7 @@
 
             
 
-            <code class="ruby">              render_json(items)</code>
+            <code class="ruby">              render_json(@items_max_price)</code>
           </li>
         </div>
       
@@ -835,7 +835,7 @@
 
             
 
-            <code class="ruby">          elsif self.negative_max_price_search?</code>
+            <code class="ruby">          elsif negative_max_price_search?</code>
           </li>
         </div>
       
@@ -1396,7 +1396,7 @@
 
             
 
-            <code class="ruby">          render json: { data: {} }, :status =&gt; 404</code>
+            <code class="ruby">          render json: { data: {} }, status: 404</code>
           </li>
         </div>
       
@@ -1434,8 +1434,8 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="86">
-            <span class="hits">1</span>
+          <li class="covered" data-hits="2" data-linenumber="86">
+            <span class="hits">2</span>
             
 
             
@@ -1462,12 +1462,144 @@
 
             
 
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="89">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">        def find_items_params_name</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="5" data-linenumber="90">
+            <span class="hits">5</span>
+            
+
+            
+
+            <code class="ruby">          @items_name = Item.find_items_by_name(params[:name])</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="91">
+            
+            
+
+            
+
+            <code class="ruby">        end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="92">
+            
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="93">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">        def find_items_params_min_price</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="3" data-linenumber="94">
+            <span class="hits">3</span>
+            
+
+            
+
+            <code class="ruby">          @items_min_price = Item.min_price(params[:min_price])</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="95">
+            
+            
+
+            
+
+            <code class="ruby">        end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="96">
+            
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="97">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">        def find_items_params_max_price</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="3" data-linenumber="98">
+            <span class="hits">3</span>
+            
+
+            
+
+            <code class="ruby">          @items_max_price = Item.max_price(params[:max_price])</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="99">
+            
+            
+
+            
+
+            <code class="ruby">        end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="100">
+            
+            
+
+            
+
             <code class="ruby">      end</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="89">
+          <li class="never" data-hits="" data-linenumber="101">
             
             
 
@@ -1478,7 +1610,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="90">
+          <li class="never" data-hits="" data-linenumber="102">
             
             
 
@@ -1489,7 +1621,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="91">
+          <li class="never" data-hits="" data-linenumber="103">
             
             
 
@@ -11377,7 +11509,7 @@
 
             
 
-            <code class="ruby">      describe &quot;and greater than 0&quot; do</code>
+            <code class="ruby">      describe &#39;and greater than 0&#39; do</code>
           </li>
         </div>
       
@@ -11641,7 +11773,7 @@
 
             
 
-            <code class="ruby">      describe &quot;when less than 0&quot; do</code>
+            <code class="ruby">      describe &#39;when less than 0&#39; do</code>
           </li>
         </div>
       
@@ -11740,7 +11872,7 @@
 
             
 
-            <code class="ruby">    describe &quot;When the record DNE&quot; do</code>
+            <code class="ruby">    describe &#39;When the record DNE&#39; do</code>
           </li>
         </div>
       
@@ -11872,7 +12004,7 @@
 
             
 
-            <code class="ruby">    describe &quot;When the param is blank&quot; do</code>
+            <code class="ruby">    describe &#39;When the param is blank&#39; do</code>
           </li>
         </div>
       
@@ -12125,7 +12257,7 @@
 
             
 
-            <code class="ruby">      describe &quot;and greater than 0&quot; do</code>
+            <code class="ruby">      describe &#39;and greater than 0&#39; do</code>
           </li>
         </div>
       
@@ -12378,7 +12510,7 @@
 
             
 
-            <code class="ruby">      describe &quot;when less than 0&quot; do</code>
+            <code class="ruby">      describe &#39;when less than 0&#39; do</code>
           </li>
         </div>
       
@@ -12477,7 +12609,7 @@
 
             
 
-            <code class="ruby">    describe &quot;When the record DNE&quot; do</code>
+            <code class="ruby">    describe &#39;When the record DNE&#39; do</code>
           </li>
         </div>
       
@@ -12609,7 +12741,7 @@
 
             
 
-            <code class="ruby">    describe &quot;When the param is blank&quot; do</code>
+            <code class="ruby">    describe &#39;When the param is blank&#39; do</code>
           </li>
         </div>
       

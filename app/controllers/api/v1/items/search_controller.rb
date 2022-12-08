@@ -6,27 +6,27 @@ module Api
       class SearchController < ApplicationController
         def index
           if name_search?
-            items = Item.find_items_by_name(params[:name])
-            if items.nil? || items.empty?
+            find_items_params_name
+            if @items_name.nil? || @items_name.empty?
               render_blank_data
             else
-              render_json(items)
+              render_json(@items_name)
             end
           elsif positive_min_price_search?
-            items = Item.min_price(params[:min_price])
-            if items.nil?
+            find_items_params_min_price
+            if @items_min_price.nil?
               render_blank_data
             else
-              render_json(items)
+              render_json(@items_min_price)
             end
           elsif negative_min_price_search?
-            render json: { errors: {} }, status: 400
+            render_blank_error
           elsif positive_max_price_search?
-            items = Item.max_price(params[:max_price])
-            if items.nil?
+            find_items_params_max_price
+            if @items_max_price.nil?
               render_blank_data
             else
-              render_json(items)
+              render_json(@items_max_price)
             end
           elsif negative_max_price_search?
             render_blank_error
@@ -84,6 +84,18 @@ module Api
 
         def render_blank_error
           render json: { errors: {} }, status: 400
+        end
+
+        def find_items_params_name
+          @items_name = Item.find_items_by_name(params[:name])
+        end
+
+        def find_items_params_min_price
+          @items_min_price = Item.min_price(params[:min_price])
+        end
+
+        def find_items_params_max_price
+          @items_max_price = Item.max_price(params[:max_price])
         end
       end
     end
