@@ -65,5 +65,21 @@ RSpec.describe Item, type: :model do
         expect(Item.max_price_one(50)).to eq(item5)
       end
     end
+
+    describe "#min_and_max" do
+      it 'finds one item within a price threshold in alphabetical order' do
+        item5 = Item.create!(name: 'ame5', description: 'desc1', unit_price: 69.99, merchant_id: @merchant.id)
+
+        expect(Item.min_and_max(60, 80)).to eq([@item4, item5])
+      end
+    end
+
+    describe "#min_and_max_one" do
+      it 'finds one item within a price threshold in alphabetical order' do
+        item5 = Item.create!(name: 'ame5', description: 'desc1', unit_price: 69.99, merchant_id: @merchant.id)
+
+        expect(Item.min_and_max_one(60, 80)).to eq(@item4)
+      end
+    end
   end
 end
