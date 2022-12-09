@@ -158,7 +158,7 @@ module Api
           elsif positive_min_and_max_search?
             item_min_and_max
             if item_min_and_max.nil?
-              render_blank_array_data
+              render_blank_hash_data
             else
               render_json(item_min_and_max)
             end

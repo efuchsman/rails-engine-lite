@@ -643,5 +643,29 @@ describe 'Items API [GET]' do
         end
       end
     end
+
+    describe "When the record does not exits" do
+      it 'returns Invalid Search' do
+        get '/api/v1/items/find?max_price=1&min_price=0'
+
+        items = JSON.parse(response.body, symbolize_names: true)
+
+        expect(items.class).to be Hash
+        expect(items).to have_key(:data)
+        expect(items[:data]).to eq('Invalid Search')
+      end
+    end
+
+    describe "if min > max" do
+      it 'returns a blank array' do
+        get '/api/v1/items/find?max_price=10&min_price=60'
+
+        items = JSON.parse(response.body, symbolize_names: true)
+
+        expect(items.class).to be Hash
+        expect(items).to have_key(:data)
+        expect(items[:data]).to eq({})
+      end
+    end
   end
 end
