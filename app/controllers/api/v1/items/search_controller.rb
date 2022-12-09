@@ -34,6 +34,10 @@ module Api
           !params[:min_price].present? && !params[:name].present? && params[:max_price].present? && params[:max_price].to_f.negative?
         end
 
+        def positive_min_and_max_search?
+          params[:max_price].present? && !params[:name].present? && params[:min_price].present? && params[:max_price].to_f.positive? && params[:min_price].to_f.positive?
+        end
+
         def render_json(items)
           render json: ItemSerializer.new(items)
         end
@@ -78,6 +82,14 @@ module Api
           Item.max_price_one(params[:max_price])
         end
 
+        def items_min_and_max
+          Item.min_and_max(params[:min_price], params[:max_price])
+        end
+
+        def item_min_and_max
+          Item.min_and_max_one(params[:min_price], params[:max_price])
+        end
+
         def build_the_index
           if name_search?
             items_by_name
@@ -104,6 +116,14 @@ module Api
             end
           elsif negative_max_price_search?
             render_blank_error
+
+          elsif positive_min_and_max_search?
+            items_min_and_max
+            if items_min_and_max.nil? || items_min_and_max.empty?
+              render_blank_array_data
+            else
+              render_json(items_min_and_max)
+            end
           else
             render_invalid
           end
@@ -135,6 +155,13 @@ module Api
             end
           elsif negative_max_price_search?
             render_blank_error
+          elsif positive_min_and_max_search?
+            item_min_and_max
+            if item_min_and_max.nil?
+              render json: { data: {} }, status: 400
+            else
+              render_json(item_min_and_max)
+            end
           else
             render_invalid
           end

@@ -39,4 +39,15 @@ class Item < ApplicationRecord
       .order(:name)
       .first
   end
+
+  def self.min_and_max(min, max)
+    where("unit_price >= #{min}")
+    .where("unit_price <= #{max}")
+  end
+
+  def self.min_and_max_one(min, max)
+    where("unit_price >= #{min}")
+    .where("unit_price <= #{max}")
+    .first
+  end
 end
