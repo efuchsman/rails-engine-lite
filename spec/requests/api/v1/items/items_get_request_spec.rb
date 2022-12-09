@@ -653,6 +653,7 @@ describe 'Items API [GET]' do
         expect(items.class).to be Hash
         expect(items).to have_key(:data)
         expect(items[:data]).to eq('Invalid Search')
+        expect(response).to have_http_status(400)
       end
     end
 
@@ -665,6 +666,7 @@ describe 'Items API [GET]' do
         expect(items.class).to be Hash
         expect(items).to have_key(:data)
         expect(items[:data]).to eq({})
+        expect(response).to have_http_status(400)
       end
     end
   end
