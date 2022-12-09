@@ -47,8 +47,7 @@ describe 'Items API [PATCH]' do
       end
 
       it 'returns a not found message' do
-        # binding.pry
-        expect(response.body).to match("Couldn't find Item")
+        expect(response.body).to match(/Couldn't find Item/)
       end
     end
 

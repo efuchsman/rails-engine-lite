@@ -6,7 +6,7 @@ class Invoice < ApplicationRecord
 
   def self.delete_invoices
     includes(:invoice_items)
-      .where(invoice_items: { id: nil })
-      .destroy_all
+    .where(invoice_items: {id: nil})
+    .destroy_all
   end
 end
