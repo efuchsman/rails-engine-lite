@@ -47,20 +47,18 @@ RSpec.describe Item, type: :model do
 
     describe '#find_an_item_by_name' do
       it 'finds one item based off a given name param' do
-
-        expect(Item.find_an_item_by_name('name')).to eq (@item1)
+        expect(Item.find_an_item_by_name('name')).to eq(@item1)
       end
     end
 
-    describe "#min_price_one" do
+    describe '#min_price_one' do
       it 'finds one item within a price threshold in alphabetical order' do
         item5 = Item.create!(name: 'ame5', description: 'desc1', unit_price: 74.99, merchant_id: @merchant.id)
         expect(Item.min_price_one(50)).to eq(item5)
-
       end
     end
 
-    describe "#max_price_one" do
+    describe '#max_price_one' do
       it 'finds one item within a price threshold in alphabetical order' do
         item5 = Item.create!(name: 'ame5', description: 'desc1', unit_price: 34.99, merchant_id: @merchant.id)
 

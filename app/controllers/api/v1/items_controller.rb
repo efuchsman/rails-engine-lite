@@ -81,10 +81,10 @@ module Api
 
       def error_map(arg)
         render json: {
-          errors: arg.errors,
-          error_codes: arg.errors.keys.map { |f| "#{f.upcase}_ERROR" }
-        },
-        status: 422
+                 errors: arg.errors,
+                 error_codes: arg.errors.keys.map { |f| "#{f.upcase}_ERROR" }
+               },
+               status: 422
       end
     end
   end

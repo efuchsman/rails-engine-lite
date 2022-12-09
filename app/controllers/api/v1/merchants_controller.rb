@@ -3,24 +3,32 @@
 module Api
   module V1
     class MerchantsController < ApplicationController
-      before_action :all_merchants, only: [:index]
-
       def index
-        render json: MerchantSerializer.new(@merchants)
+        render_json(all_merchants)
       end
 
       def show
         if params[:item_id]
-          @item = Item.find(params[:item_id])
-          @merchant = @item.merchant
+          find_item
+          @merchant = find_item.merchant
         else
           @merchant = Merchant.find(params[:id])
         end
-        render json: MerchantSerializer.new(@merchant)
+        render_json(@merchant)
       end
 
+      private
+
       def all_merchants
-        @merchants = Merchant.all
+        Merchant.all
+      end
+
+      def find_item
+        Item.find(params[:item_id])
+      end
+
+      def render_json(arg)
+        render json: MerchantSerializer.new(arg)
       end
     end
   end

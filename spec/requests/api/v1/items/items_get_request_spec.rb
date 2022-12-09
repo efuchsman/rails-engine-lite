@@ -389,7 +389,7 @@ describe 'Items API [GET]' do
       @item4 = Item.create!(name: 'name4', description: 'desc1', unit_price: 79.99, merchant_id: @merchant.id)
     end
 
-    describe "When the record exists" do
+    describe 'When the record exists' do
       it 'returns a status code 200' do
         get '/api/v1/items/find?name=name'
 

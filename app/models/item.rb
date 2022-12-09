@@ -30,13 +30,13 @@ class Item < ApplicationRecord
 
   def self.min_price_one(num)
     where("unit_price >= #{num}")
-    .order(:name)
-    .first
+      .order(:name)
+      .first
   end
 
   def self.max_price_one(num)
     where("unit_price <= #{num}")
-    .order(:name)
-    .first
+      .order(:name)
+      .first
   end
 end
