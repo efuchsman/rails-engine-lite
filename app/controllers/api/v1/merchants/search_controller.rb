@@ -48,8 +48,6 @@ module Api
           render json: { data: [] }, status: 400
         end
 
-        private
-
         def find_all_merchants_by_name
           Merchant.find_all_merchants_by_name(params[:name])
         end
