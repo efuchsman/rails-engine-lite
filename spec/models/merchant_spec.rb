@@ -29,9 +29,9 @@ RSpec.describe Merchant, type: :model do
       end
     end
 
-    describe "Find_all_merchants_by_name" do
-      it "finds all merchants that partially match a name param" do
-        expect(Merchant.find_all_merchants_by_name("name")).to eq([@merchant6, @merchant7, @merchant8])
+    describe 'Find_all_merchants_by_name' do
+      it 'finds all merchants that partially match a name param' do
+        expect(Merchant.find_all_merchants_by_name('name')).to eq([@merchant6, @merchant7, @merchant8])
       end
     end
   end

@@ -237,7 +237,7 @@ describe 'Merchants API [GET] requests' do
     end
   end
 
-  describe "GET /merchants/find_all?name=" do
+  describe 'GET /merchants/find_all?name=' do
     before :each do
       @merchant1 = Merchant.create!(name: 'Guard and Grace')
       @merchant2 = Merchant.create!(name: 'Buckhorn Exchange')
@@ -259,7 +259,7 @@ describe 'Merchants API [GET] requests' do
         expect(response).to have_http_status(200)
       end
 
-      it "has readable attributes" do
+      it 'has readable attributes' do
         get '/api/v1/merchants/find_all?name=name'
 
         merchants = JSON.parse(response.body, symbolize_names: true)
@@ -276,8 +276,8 @@ describe 'Merchants API [GET] requests' do
       end
     end
 
-    describe "When there are no partial matches" do
-      it "Returns status 400" do
+    describe 'When there are no partial matches' do
+      it 'Returns status 400' do
         get '/api/v1/merchants/find_all?name=n5me'
 
         expect(response).to have_http_status(400)
@@ -294,7 +294,7 @@ describe 'Merchants API [GET] requests' do
       end
     end
 
-    describe "When no name is provided" do
+    describe 'When no name is provided' do
       it 'returns invalid search' do
         get '/api/v1/merchants/find_all?name='
 
@@ -305,7 +305,7 @@ describe 'Merchants API [GET] requests' do
         expect(merchants[:data]).to eq('Invalid Search')
       end
 
-      it "returns status 400" do
+      it 'returns status 400' do
         get '/api/v1/merchants/find_all?name='
 
         expect(response).to have_http_status(400)
